@@ -14,7 +14,4 @@ class Solution:
         return ret
 
     def parse_sum(self,a1,n):
-        return int(n**2/2 + (a1-1/2)*n)
-
-a = Solution()
-print(a.FindContinuousSequence(5))
+        return int((n**2)/2 + a1 * n - n / 2)
