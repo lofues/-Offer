@@ -4,7 +4,7 @@ def quick_sort(data,low,high):
 
     if low<high:
         pivot = random.randint(low,high)
-        data[low],data[high] = data[high],data[low]
+        data[pivot],data[high] = data[high],data[pivot]
 
         mid = partion(data,low,high)
         quick_sort(data,low,mid-1)
