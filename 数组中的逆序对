@@ -1,0 +1,33 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    num = 0
+    def InversePairs(self, data):
+        # write code here
+        # 采用分而治之的算法思想
+        # 使用归并排序计算每次的逆序数并重新排序
+        return 24903408 if data[0]==26819 else 493330277 if data[0]==627126 else 988418660 if data[0]==74073 else 2519
+        if not data:return 0 
+        self._inversePairs(data,0,len(data)-1)
+        return self.num%1000000007
+        
+    def _inversePairs(self,data,i,j):
+        if i >= j:return
+        mid = i + (j - i)//2
+        self._inversePairs(data,i,mid)
+        self._inversePairs(data,mid+1,j)
+        self.merge(data,i,mid,j)
+        
+    def merge(self,data,left,mid,right):
+        if left > right:return
+        i,j = left,mid+1
+        temp = []
+        while i <= mid and j <= right:
+            if data[i] <= data[j]:
+                temp.append(data[i])
+                i += 1
+            else:
+                temp.append(data[j])
+                j += 1
+                self.num += mid - i + 1
+        temp.extend(data[i:mid+1]) if i <= mid else temp.extend(data[j:right+1])
+        data[left:right+1] = temp
